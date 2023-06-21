@@ -21,7 +21,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 	fd = fopen(av[1], "r");
 	if (fd == NULL)
 	{
-	       	exit_msg(av[1], 91);
+		exit_msg(av[1], 91);
 	}
 
 	buff_fill(line_read, BUFFER);
@@ -29,5 +29,5 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 	_readline(line_read, &num, fd, av[1]);
 	parser(line_read, parse_buff, &h);
 	buff_fill(line_read, BUFFER);
-       	return (0);
+	return (0);
 }
