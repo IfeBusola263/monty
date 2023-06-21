@@ -45,5 +45,7 @@ void parser(char **lines, char **parse, stack_t **h);
 size_t stack_operations(char **tk_line, stack_t **head);
 void push(stack_t **h, unsigned int line_number);
 void pall(stack_t **h, unsigned int line_number);
+void _free_stack(stack_t *h);
+void _free(char **h);
 
 #endif /* MONTY_H */

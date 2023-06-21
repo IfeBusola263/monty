@@ -66,6 +66,9 @@ size_t _readline(char **buff, size_t *n, FILE *fildes, char *filename)
 		buff++;
 		count++;
 	}
+	buff--;
+	free(*buff);
+	(*buff) = NULL;
 	return (count);
 }
 /**
@@ -95,11 +98,6 @@ void parser(char **lines, char **parse, stack_t **h)
 		/* buff_fill(parse, PARSE); */
 		j = 0;
 	}
-	/**
-	 * for (i = 0; parse[i] != NULL; i++)
-	 * printf("%s\n", parse[i]);
-	 * printf("\n-------in----parser-------------\n");
-	 */
 }
 /**
  *stack_operations - put instructions on the stack
@@ -107,7 +105,6 @@ void parser(char **lines, char **parse, stack_t **h)
  *@head: is the head of the linked list
  *Return: 1 or 0
  */
-
 size_t stack_operations(char **tk_line, stack_t **head)
 {
 	unsigned int i, len;
@@ -117,11 +114,7 @@ size_t stack_operations(char **tk_line, stack_t **head)
 	};
 
 	len = sizeof(array) / sizeof(array[0]);
-	for (i = 0; tk_line[i]; i++)
-		printf("%s\n", tk_line[i]);
-
-	/* printf("\n--------in---stack--operation-----------\n"); */
-	for (i = 0; i < len; i++)
+ 	for (i = 0; i < len; i++)
 	{
 		if (strcmp(array[i].opcode, tk_line[0]) == 0)
 		{

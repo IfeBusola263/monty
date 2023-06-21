@@ -28,6 +28,9 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 	buff_fill(parse_buff, PARSE);
 	_readline(line_read, &num, fd, av[1]);
 	parser(line_read, parse_buff, &h);
+	_free_stack(h);
+	_free(line_read);
 	buff_fill(line_read, BUFFER);
+	fclose(fd);
 	return (0);
 }
