@@ -31,8 +31,6 @@ void push(stack_t **h, unsigned int line_number)
 	newNode->prev = NULL;
 	newNode->next = NULL;
 	*h = newNode;
-
-	return;
 }
 /**
  * pall - prints all the item of the stack
@@ -46,7 +44,7 @@ void pall(stack_t **h, unsigned int line_number)
 	stack_t *ptr;
 	(void)line_number;
 
-       	if (*h != NULL)
+	if (*h != NULL)
 	{
 		ptr = *h;
 		while (ptr)
@@ -55,5 +53,4 @@ void pall(stack_t **h, unsigned int line_number)
 			ptr = ptr->next;
 		}
 	}
-	return;
 }
