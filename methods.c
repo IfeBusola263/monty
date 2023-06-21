@@ -9,10 +9,10 @@
  */
 void exit_msg(char *cmd, int pos)
 {
-	switch(pos)
+	switch (pos)
 	{
 		case 90:
-			dprintf(2 , "USAGE: monty file\n");
+			dprintf(2, "USAGE: monty file\n");
 			exit(EXIT_FAILURE);
 			break;
 		case 91:
@@ -72,7 +72,7 @@ size_t _readline(char **buff, size_t *n, FILE *fildes, char *filename)
  * parser - splits the line into tokens to be treated
  * @lines: an arrary of strings from the file read from
  * @parse: array containing the parsed string
- *
+ * @h: is the head of linked list
  * Return: returns nothing
  */
 void parser(char **lines, char **parse, stack_t **h)
@@ -87,7 +87,7 @@ void parser(char **lines, char **parse, stack_t **h)
 		{
 			parse[j] = token;
 			token = strtok(NULL, " ");
-	      		j++;
+			j++;
 		}
 		if (stack_operations(parse, h) != 1)
 			exit_msg(parse[0], atoi(parse[1]));
@@ -101,6 +101,13 @@ void parser(char **lines, char **parse, stack_t **h)
 	 * printf("\n-------in----parser-------------\n");
 	 */
 }
+/**
+ *stack_operations - put instructions on the stack
+ *@tk_line: is the pointer to the tokenized string
+ *@head: is the head of the linked list
+ *Return: 1 or 0
+ */
+
 size_t stack_operations(char **tk_line, stack_t **head)
 {
 	unsigned int i, len;
@@ -109,19 +116,18 @@ size_t stack_operations(char **tk_line, stack_t **head)
 		{"pall", pall},
 	};
 
-	len = sizeof(array)/ sizeof(array[0]);
+	len = sizeof(array) / sizeof(array[0]);
 	for (i = 0; tk_line[i]; i++)
 		printf("%s\n", tk_line[i]);
 
 	/* printf("\n--------in---stack--operation-----------\n"); */
 	for (i = 0; i < len; i++)
 	{
-      		if (strcmp(array[i].opcode, tk_line[0]) == 0)
+		if (strcmp(array[i].opcode, tk_line[0]) == 0)
 		{
-		      	array[i].f(head, (unsigned int)atoi(tk_line[1]));
+			array[i].f(head, (unsigned int)atoi(tk_line[1]));
 			return (1);
 		}
-
 	}
 
 	return (0);
