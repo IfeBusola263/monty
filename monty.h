@@ -1,6 +1,14 @@
 #ifndef MONTY_H
 #define MONTY_H
-
+#define _POSIX_C_SOURCE 200809L
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <stddef.h>
+#define _GNU_SOURCE
+#define BUFFER 1024
+#define PARSE 20
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -29,5 +37,13 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+void exit_msg(char *cmd, int pos);
+void buff_fill(char **buff, int size);
+size_t _readline(char **buff, size_t *n, FILE *fildes, char *filename);
+void parser(char **lines, char **parse, stack_t **h);
+size_t stack_operations(char **tk_line, stack_t **head);
+void push(stack_t **h, unsigned int line_number);
+void pall(stack_t **h, unsigned int line_number);
 
 #endif /* MONTY_H */
