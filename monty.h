@@ -38,6 +38,11 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+typedef struct mem_s
+{
+	int num;
+} mem_t;
+extern mem_t number;
 void exit_msg(char *cmd, int pos);
 void buff_fill(char **buff, int size);
 size_t _readline(char **buff, size_t *n, FILE *fildes, char *filename);

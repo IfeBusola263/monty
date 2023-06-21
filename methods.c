@@ -109,8 +109,14 @@ size_t stack_operations(char **tk_line, stack_t **head)
 {
 	unsigned int i, len;
 	instruction_t array[] = {
-		{"push", push},
-		{"pall", pall},
+		{"push", push}, {"pall", pall},
+		{"pint", pint}, {"pop", pop},
+		{"swap", swap}, {"add", add},
+		{"nop", nop}, {"sub", sub},
+		{"div", div}, {"mul", mul},
+		{"mod", mod}, {"pchar", pchar},
+		{"pstr", pstr}, {"rotl", rotl},
+		{"rotr", rotr}
 	};
 
 	len = sizeof(array) / sizeof(array[0]);
