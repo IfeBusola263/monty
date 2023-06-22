@@ -29,7 +29,6 @@ void exit_msg(char *cmd, int pos)
 			dprintf(2, "L%d: unknown instruction %s\n", pos, cmd);
 			_free_stack(number.headstack);
 			_free(number.readline);
-
 			exit(EXIT_FAILURE);
 	}
 }

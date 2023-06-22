@@ -51,7 +51,7 @@ typedef struct mem_s
 {
 	int num;
 	stack_t *bottom;
-	stack_t *headstack;
+	stack_t **headstack;
 	char **readline;
 } mem_t;
 extern mem_t number;
@@ -62,7 +62,7 @@ void parser(char **lines, char **parse, stack_t **h);
 size_t stack_operations(char **tk_line, stack_t **head, int line_number);
 void push(stack_t **h, unsigned int line_number);
 void pall(stack_t **h, unsigned int line_number);
-void _free_stack(stack_t *h);
+void _free_stack(stack_t **h);
 void _free(char **h);
 int check_arg(char *arg);
 void exit_msg2(char *op, int liNum);

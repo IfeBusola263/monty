@@ -5,17 +5,17 @@
  *
  * Return: returns nothing
  */
-void _free_stack(stack_t *h)
+void _free_stack(stack_t **h)
 {
-	if (h != NULL)
+	if (*h != NULL)
 	{
-		while (h->next)
+		while ((*h)->next)
 		{
-			h = h->next;
-			free(h->prev);
+			*h = (*h)->next;
+			free((*h)->prev);
 		}
-		free(h);
-		h = NULL;
+		free(*h);
+		*h = NULL;
 	}
 }
 /**

@@ -25,14 +25,14 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 		exit_msg(av[1], 91);
 	}
 
-	number.headstack = h;
+	number.headstack = &h;
 	number.readline = line_read;
 	buff_fill(line_read, BUFFER);
 	buff_fill(parse_buff, PARSE);
 	_readline(line_read, &num, fd, av[1]);
 	fclose(fd);
 	parser(line_read, parse_buff, &h);
-	_free_stack(h);
+	_free_stack(&h);
 	_free(line_read);
 	buff_fill(line_read, BUFFER);
 
