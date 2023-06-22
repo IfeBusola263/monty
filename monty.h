@@ -1,3 +1,4 @@
+
 #ifndef MONTY_H
 #define MONTY_H
 #define _POSIX_C_SOURCE 200809L
@@ -6,6 +7,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stddef.h>
+#include <ctype.h>
 #define _GNU_SOURCE
 #define BUFFER 1024
 #define PARSE 20
@@ -37,10 +39,16 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
+/**
+ * struct mem_s - global variable representation
+ * @num: integer member
+ *
+ * Descriptuin: Global variable structure
+ */
 typedef struct mem_s
 {
 	int num;
+	stack_t *bottom;
 } mem_t;
 extern mem_t number;
 void exit_msg(char *cmd, int pos);
@@ -52,5 +60,18 @@ void push(stack_t **h, unsigned int line_number);
 void pall(stack_t **h, unsigned int line_number);
 void _free_stack(stack_t *h);
 void _free(char **h);
+int check_arg(char *arg);
+void exit_msg2(char *op, int liNum);
+void pop(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
+void mod(stack_t **stack, unsigned int line_number);
+void divy(stack_t **stack, unsigned int line_number);
+void mul(stack_t **stack, unsigned int line_number);
+void pchar(stack_t **stack, unsigned int line_number);
+void pstr(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
 
 #endif /* MONTY_H */

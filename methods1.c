@@ -110,13 +110,12 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 	unsigned int i, len;
 	instruction_t array[] = {
 		{"push", push}, {"pall", pall},
-		/*{"pint", pint}, {"pop", pop},
+		{"pint", pint}, {"pop", pop},
 		{"swap", swap}, {"add", add},
-		{"nop", nop}, {"sub", sub},
-		{"div", div}, {"mul", mul},
-		{"mod", mod}, {"pchar", pchar},
-		{"pstr", pstr}, {"rotl", rotl},
-		{"rotr", rotr}*/
+		{"sub", sub},{"div", divy},
+		{"mul", mul},{"mod", mod},
+		{"pchar", pchar},{"pstr", pstr},
+		/* {"rotl", rotl},{"rotr", rotr}, {"nop", nop}*/
 	};
 
 	len = sizeof(array) / sizeof(array[0]);
@@ -124,6 +123,16 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 	{
 		if (strcmp(array[i].opcode, tk_line[0]) == 0)
 		{
+			if (strcmp(tk_line[0], "push") == 0)
+			{
+				if (!tk_line[1] || check_arg(tk_line[1]) == 0)
+				{
+					exit_msg2(tk_line[0], line_number);
+				}
+				number.num = atoi(tk_line[1]);
+				array[i].f(head, line_number);
+				return (1);
+			}
 			array[i].f(head, line_number);
 			return (1);
 		}

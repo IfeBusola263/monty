@@ -38,6 +38,7 @@ void add(stack_t **stack, unsigned int line_number)
 
 void sub(stack_t **stack, unsigned int line_number)
 {
+	int a, b, result;
 	stack_t *tmp, *current;
 
 	if ((*stack) == NULL || (*stack)->next == NULL)
@@ -125,7 +126,7 @@ void mul(stack_t **stack, unsigned int line_number)
  * Return: nothing
  */
 
-void divi(stack_t **stack, unsigned int line_number)
+void divy(stack_t **stack, unsigned int line_number)
 {
 	int a, b, result;
 	stack_t *tmp, *current;
