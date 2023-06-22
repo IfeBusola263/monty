@@ -123,7 +123,7 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
  	for (i = 0; i < len; i++)
 	{
 		if (tk_line[0][0] == '#')
-			continue;
+			return (1);;
 		if (strcmp(array[i].opcode, tk_line[0]) == 0)
 		{
 			if (strcmp(tk_line[0], "push") == 0)

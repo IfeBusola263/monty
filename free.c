@@ -49,9 +49,9 @@ void exit_msg2(char *op, int liNum)
 
 	else if (strcmp(op, "pint") == 0)
 	{
-		dprintf(2, "L%d: can't  %s, stack empty\n", liNum, op);
+		dprintf(2, "L%d: can't %s, stack empty\n", liNum, op);
 		exit(EXIT_FAILURE);
-	}	
+	}
 	else if (strcmp(op, "pop") == 0)
 	{
 		dprintf(2, "L%d: can't %s an empty stack\n", liNum, op);
@@ -59,12 +59,12 @@ void exit_msg2(char *op, int liNum)
 	}
 	else if (strcmp(op, "pchar") == 0)
 	{
-		dprintf(2, "L%d: can't %s value out of range", liNum, op);
+		dprintf(2, "L%d: can't %s value out of range\n", liNum, op);
 		exit(EXIT_FAILURE);
 	}
 	else
 	{
-		dprintf(2, "L%d: can't %s stack too short", liNum, op);
+		dprintf(2, "L%d: can't %s stack too short\n", liNum, op);
 		exit(EXIT_FAILURE);
 	}
 }
