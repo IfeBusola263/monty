@@ -118,10 +118,6 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 		{"pstr", pstr}, {"rotl", rotl},
 		{"rotr", rotr}*/
 	};
-	for (i = 0; tk_line[i]; i++)
-		printf("%s\n", tk_line[i]);
-
-	printf("---------------------\n");
 
 	len = sizeof(array) / sizeof(array[0]);
  	for (i = 0; i < len; i++)
