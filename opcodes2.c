@@ -23,6 +23,7 @@ void add(stack_t **stack, unsigned int line_number)
 	sum = a + b;
 
 	(*stack)->n = sum;
+	tmp->next = NULL;
 	(*stack)->prev = NULL;
 	free(tmp);
 }
