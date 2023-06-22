@@ -54,3 +54,65 @@ void pall(stack_t **h, unsigned int line_number)
 		}
 	}
 }
+/**
+ * pop - remove element at the top of a stack
+ * @stack: is the pointer to the top of the stack
+ * @line_number: is both the line no and arguments on the line
+ * Return: nothing
+ */
+
+void pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack, *previous;
+
+	if (*stack == NULL)
+	{
+		/*print error msg*/
+	}
+
+	(*stack) = (*stack)->next;
+	if (*stack != NULL)
+		(*stack)->prev = NULL;
+	free(tmp);
+}
+
+/**
+ * pint - print the element on top of the stack
+ * @stack: is the pointer to the top of the stack
+ * @line_number: is both line no and the argument on each line
+ * Return: nothing
+ */
+
+void pint(stack_t **stack, unsigned int line_number)
+{
+	if (*stack == NULL)
+	{
+		/*print error msg*/
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
+}
+
+/**
+ * swap - exchanges the element between the two top element
+ * @stack: is pointer to stack top
+ * @line_number: contains both line no and argument
+ * Return: nothing
+ */
+
+void swap(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp, *current;
+	int i = 0, n;
+
+	if ((*stack) == NULL || (*stack)->next == NULL)
+	{
+		/*print error msg*/
+	}
+	tmp = *stack;
+	current = (*stack)->next;
+
+	n = tmp->n;
+	tmp->n = current->n;
+	current->n = n;
+}
