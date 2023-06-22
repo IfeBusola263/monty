@@ -26,6 +26,7 @@ void add(stack_t **stack, unsigned int line_number)
 	tmp->next = NULL;
 	(*stack)->prev = NULL;
 	free(tmp);
+	tmp = NULL;
 }
 
 /**
