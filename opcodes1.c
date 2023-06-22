@@ -90,11 +90,14 @@ void pop(stack_t **stack, unsigned int line_number)
 
 void pint(stack_t **stack, unsigned int line_number)
 {
-	if (*stack != NULL)
+	stack_t *top = *stack;
+
+	if (top != NULL)
 	{
-		printf("%d\n", (*stack)->n);
+		printf("%d\n", top->n);
 	}
-	exit_msg2("pint", line_number);
+	else
+		exit_msg2("pint", line_number);
 }
 
 /**
