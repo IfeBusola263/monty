@@ -7,6 +7,8 @@
  */
 int check_arg(char *arg)
 {
+	if (*arg == '-' || *arg == '+')
+		arg++;
 	while (*arg)
 	{
 		if (*arg < 48 || *arg > 57)
