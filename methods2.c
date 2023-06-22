@@ -1,6 +1,6 @@
 #include "monty.h"
 /**
- * check_args - checks for correct argument
+ * check_arg - checks for correct argument
  * @arg: the argument of the opcode command
  *
  * Return: returns nothing

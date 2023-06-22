@@ -1,5 +1,4 @@
 #include "monty.h"
-
 /**
  * add - adds the top two stack elements
  * @stack: is the stack head pointer
@@ -17,7 +16,7 @@ void add(stack_t **stack, unsigned int line_number)
 		exit_msg2("add", line_number);
 	}
 	tmp = *stack;
-	*stack = (*stack)->next; 
+	*stack = (*stack)->next;
 
 	a = (*stack)->n;
 	b = tmp->n;
@@ -119,7 +118,7 @@ void mul(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * divi - divides the two top stack elements
+ * divy - divides the two top stack elements
  * @stack: is pointer to stack_t list
  * @line_number: is the arguments to the opcodes
  * Return: nothing

@@ -1,5 +1,5 @@
 #include "monty.h"
-mem_t number = {0};
+mem_t number = {0, NULL, NULL, NULL};
 /**
  * main - This the interpreter entry point
  * @ac: argument counter
@@ -25,6 +25,8 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 		exit_msg(av[1], 91);
 	}
 
+	number.headstack = h;
+	number.readline = line_read;
 	buff_fill(line_read, BUFFER);
 	buff_fill(parse_buff, PARSE);
 	_readline(line_read, &num, fd, av[1]);

@@ -21,10 +21,16 @@ void exit_msg(char *cmd, int pos)
 			break;
 		case 92:
 			dprintf(2, "Error: %s failed\n", cmd);
+			_free_stack(number.headstack);
+			_free(number.readline);
 			exit(EXIT_FAILURE);
 			break;
 		default:
 			dprintf(2, "L%d: unknown instruction %s\n", pos, cmd);
+			_free_stack(number.headstack);
+			_free(number.readline);
+
+			exit(EXIT_FAILURE);
 	}
 }
 /**
@@ -100,9 +106,11 @@ void parser(char **lines, char **parse, stack_t **h)
 	}
 }
 /**
- *stack_operations - put instructions on the stack
- *@tk_line: is the pointer to the tokenized string
- *@head: is the head of the linked list
+ * stack_operations - put instructions on the stack
+ * @tk_line: is the pointer to the tokenized string
+ * @head: is the head of the linked list
+ * @line_number: line number of instruction
+ *
  *Return: 1 or 0
  */
 size_t stack_operations(char **tk_line, stack_t **head, int line_number)
@@ -112,15 +120,14 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 		{"push", push}, {"pall", pall},
 		{"pint", pint}, {"pop", pop},
 		{"swap", swap}, {"add", add},
-		{"sub", sub},{"div", divy},
-		{"mul", mul},{"mod", mod},
-		{"pchar", pchar},{"pstr", pstr},
-		{"rotl", rotl}
-		/*{"rotr", rotr}*/
+		{"sub", sub}, {"div", divy},
+		{"mul", mul}, {"mod", mod},
+		{"pchar", pchar}, {"pstr", pstr},
+		{"rotl", rotl} /*{"rotr", rotr}*/
 	};
 
 	len = sizeof(array) / sizeof(array[0]);
- 	for (i = 0; i < len; i++)
+	for (i = 0; i < len; i++)
 	{
 		if (tk_line[0][0] == '#' || strcmp(tk_line[0], "nop") == 0)
 			return (1);

@@ -1,4 +1,3 @@
-
 #ifndef MONTY_H
 #define MONTY_H
 #define _POSIX_C_SOURCE 200809L
@@ -42,13 +41,18 @@ typedef struct instruction_s
 /**
  * struct mem_s - global variable representation
  * @num: integer member
+ * @bottom: stack tail
+ * @headstack: holds address of the headstack
+ * @readline: holds the address of buffer of lines
  *
- * Descriptuin: Global variable structure
+ * Description: Global variable structure
  */
 typedef struct mem_s
 {
 	int num;
 	stack_t *bottom;
+	stack_t *headstack;
+	char **readline;
 } mem_t;
 extern mem_t number;
 void exit_msg(char *cmd, int pos);

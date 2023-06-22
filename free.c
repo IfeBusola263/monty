@@ -35,7 +35,7 @@ void _free(char **h)
 /**
  * exit_msg2 - handles error messages for operations
  * @op: operation with error
- * @line_number: line with the error
+ * @liNum: line with the error
  *
  * Return: nothing
  */
@@ -44,27 +44,37 @@ void exit_msg2(char *op, int liNum)
 	if (strcmp(op, "push") == 0)
 	{
 		dprintf(2, "L%d: usage: %s integer\n", liNum, op);
+		_free_stack(number.headstack);
+		_free(number.readline);
 		exit(EXIT_FAILURE);
 	}
 
 	else if (strcmp(op, "pint") == 0)
 	{
 		dprintf(2, "L%d: can't %s, stack empty\n", liNum, op);
+		_free_stack(number.headstack);
+		_free(number.readline);
 		exit(EXIT_FAILURE);
 	}
 	else if (strcmp(op, "pop") == 0)
 	{
 		dprintf(2, "L%d: can't %s an empty stack\n", liNum, op);
+		_free_stack(number.headstack);
+		_free(number.readline);
 		exit(EXIT_FAILURE);
 	}
 	else if (strcmp(op, "pchar") == 0)
 	{
 		dprintf(2, "L%d: can't %s value out of range\n", liNum, op);
+		_free_stack(number.headstack);
+		_free(number.readline);
 		exit(EXIT_FAILURE);
 	}
 	else
 	{
 		dprintf(2, "L%d: can't %s stack too short\n", liNum, op);
+		_free_stack(number.headstack);
+		_free(number.readline);
 		exit(EXIT_FAILURE);
 	}
 }
