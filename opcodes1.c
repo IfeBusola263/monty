@@ -29,7 +29,6 @@ void push(stack_t **h, unsigned int line_number)
 
 		return;
 	}
-	tail->bottom = newNode;
 	newNode->prev = NULL;
 	newNode->next = NULL;
 	*h = newNode;

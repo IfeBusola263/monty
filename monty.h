@@ -51,7 +51,6 @@ typedef struct mem_s
 	stack_t *bottom;
 } mem_t;
 extern mem_t number;
-extern mem_t tail;
 void exit_msg(char *cmd, int pos);
 void buff_fill(char **buff, int size);
 size_t _readline(char **buff, size_t *n, FILE *fildes, char *filename);
