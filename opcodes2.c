@@ -9,7 +9,7 @@
 void add(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
-	int a, b, sum;
+	int sum;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
@@ -18,9 +18,7 @@ void add(stack_t **stack, unsigned int line_number)
 	tmp = *stack;
 	*stack = (*stack)->next;
 
-	a = (*stack)->n;
-	b = tmp->n;
-	sum = a + b;
+	sum = (*stack)->n +  tmp->n;
 
 	(*stack)->n = sum;
 	tmp->next = NULL;
@@ -38,8 +36,8 @@ void add(stack_t **stack, unsigned int line_number)
 
 void sub(stack_t **stack, unsigned int line_number)
 {
-	int a, b, result;
-	stack_t *tmp;
+	int result;
+	stack_t *tmp = NULL;
 
 	if ((*stack) == NULL || (*stack)->next == NULL)
 	{
@@ -48,14 +46,13 @@ void sub(stack_t **stack, unsigned int line_number)
 
 	tmp = *stack;
 	*stack = (*stack)->next;
-	a = (*stack)->n;
-	b = tmp->n;
-	result = a - b;
+	result = (*stack)->n - tmp->n;
 
 	(*stack)->n = result;
 	(*stack)->prev = NULL;
 	tmp->next = NULL;
 	free(tmp);
+	tmp = NULL:
 }
 
 /**
