@@ -9,7 +9,7 @@ mem_t number = {0, NULL, NULL, NULL};
  */
 int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 {
-	FILE *fd;
+	FILE *fd = NULL;
 	char *line_read[BUFFER], *parse_buff[PARSE];
 	size_t num = 0;
 	stack_t *h = NULL;

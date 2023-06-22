@@ -57,21 +57,21 @@ void buff_fill(char **buff, int size)
  */
 size_t _readline(char **buff, size_t *n, FILE *fildes, char *filename)
 {
-	ssize_t read;
-	size_t count;
+	ssize_t read = 0;
+	size_t count = 0;
 
-	count = 0;
 	while (read != -1)
 	{
 		read = getline(buff, n, fildes);
 		if (read == -1 && count == 0)
 			exit_msg(filename, 91);
-
-		(*buff)[read - 1] = '\0';
-		buff++;
-		count++;
+		if (read != -1)
+		{
+			(*buff)[read - 1] = '\0';
+			buff++;
+			count++;
+		}
 	}
-	buff--;
 	free(*buff);
 	(*buff) = NULL;
 	return (count);
