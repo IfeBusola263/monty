@@ -125,6 +125,9 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 		{"rotl", rotl} /*{"rotr", rotr}*/
 	};
 
+	if (tk_line[0] == NULL)
+		return (1);
+
 	len = sizeof(array) / sizeof(array[0]);
 	for (i = 0; i < len; i++)
 	{

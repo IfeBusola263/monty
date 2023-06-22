@@ -9,7 +9,7 @@
 #include <ctype.h>
 #define _GNU_SOURCE
 #define BUFFER 1024
-#define PARSE 20
+#define PARSE 100
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer

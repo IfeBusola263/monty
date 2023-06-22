@@ -15,10 +15,7 @@ void push(stack_t **h, unsigned int line_number)
 	if (!newNode)
 		exit_msg("malloc", 92);
 
-	if (!number.num)
-	{
-		exit_msg2("push", line_number);
-	}
+	(void)line_number;
 	newNode->n = number.num;
 
 	if (*h != NULL)
