@@ -116,14 +116,14 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 		{"mul", mul},{"mod", mod},
 		{"pchar", pchar},{"pstr", pstr},
 		{"rotl", rotl}
-		/*{"rotr", rotr},{"nop", nop}*/
+		/*{"rotr", rotr}*/
 	};
 
 	len = sizeof(array) / sizeof(array[0]);
  	for (i = 0; i < len; i++)
 	{
-		if (tk_line[0][0] == '#')
-			return (1);;
+		if (tk_line[0][0] == '#' || strcmp(tk_line[0], "nop") == 0)
+			return (1);
 		if (strcmp(array[i].opcode, tk_line[0]) == 0)
 		{
 			if (strcmp(tk_line[0], "push") == 0)
