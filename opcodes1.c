@@ -8,7 +8,6 @@
  */
 void push(stack_t **h, unsigned int line_number)
 {
-	(void)line_number;
 	stack_t *newNode;
 	stack_t *ptr;
 
@@ -16,6 +15,10 @@ void push(stack_t **h, unsigned int line_number)
 	if (!newNode)
 		exit_msg("malloc", 92);
 
+	if (!number.num)
+	{
+		exit_msg2("push", line_number);
+	}
 	newNode->n = number.num;
 
 	if (*h != NULL)
@@ -43,6 +46,7 @@ void push(stack_t **h, unsigned int line_number)
 void pall(stack_t **h, unsigned int line_number)
 {
 	stack_t *ptr;
+
 	(void)line_number;
 
 	if (*h != NULL)
@@ -64,12 +68,11 @@ void pall(stack_t **h, unsigned int line_number)
 
 void pop(stack_t **stack, unsigned int line_number)
 {
-	(void)line_number;
-	stack_t *tmp = *stack, *previous;
+	stack_t *tmp = *stack;
 
 	if (*stack == NULL)
 	{
-		/*print error msg*/
+		exit_msg2("pop", line_number);
 	}
 
 	(*stack) = (*stack)->next;
@@ -87,11 +90,9 @@ void pop(stack_t **stack, unsigned int line_number)
 
 void pint(stack_t **stack, unsigned int line_number)
 {
-	(void)line_number;
 	if (*stack == NULL)
 	{
-		/*print error msg*/
-		exit(EXIT_FAILURE);
+		exit_msg2("pint", line_number);
 	}
 	printf("%d\n", (*stack)->n);
 }
@@ -105,13 +106,12 @@ void pint(stack_t **stack, unsigned int line_number)
 
 void swap(stack_t **stack, unsigned int line_number)
 {
-	(void)line_number;
 	stack_t *tmp, *current;
 	int n;
 
 	if ((*stack) == NULL || (*stack)->next == NULL)
 	{
-		/*print error msg*/
+		exit_msg2("swap", line_number);
 	}
 	tmp = *stack;
 	current = (*stack)->next;

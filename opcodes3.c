@@ -11,11 +11,10 @@
 void pchar(stack_t **stack, unsigned int line_number)
 {
 	int a;
-	stack_t *tmp;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		/*print error msg*/
+		exit_msg2("pchar", line_number);
 	}
 
 	a = (*stack)->n;
@@ -24,6 +23,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 	{
 		putchar(a);
 	}
+	putchar('\n');
 }
 
 /**
@@ -35,14 +35,17 @@ void pchar(stack_t **stack, unsigned int line_number)
 
 void pstr(stack_t **stack, unsigned int line_number)
 {
+	int a;
+	stack_t *tmp;
+
+	(void)line_number;
+
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		printf("\n");
 	}
 
-	int a;
-
-	stack_t *tmp = *stack;
+	tmp = *stack;
 
 	while (tmp != NULL)
 	{
@@ -52,6 +55,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 			break;
 		}
 		putchar(a);
+		putchar('\n');
 		tmp = tmp->next;
 	}
 }
@@ -69,7 +73,7 @@ void rotl(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		/*print error msg*/
+		exit_msg2("rotl", line_number);
 	}
 
 	tmp = *stack;
