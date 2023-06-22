@@ -38,23 +38,23 @@ void add(stack_t **stack, unsigned int line_number)
 void sub(stack_t **stack, unsigned int line_number)
 {
 	int a, b, result;
-	stack_t *tmp, *current;
+	stack_t *tmp;
 
 	if ((*stack) == NULL || (*stack)->next == NULL)
 	{
 		exit_msg2("sub", line_number);
 	}
-	tmp = (*stack)->next;
-	a = tmp->n;
-	b = (*stack)->n;
+
+	tmp = *stack;
+	*stack = (*stack)->next;
+	a = (*stack)->n;
+	b = tmp->n;
 	result = a - b;
 
 	(*stack)->n = result;
-
-	current = tmp;
-	tmp = tmp->next;
-	(*stack)->next = tmp;
-	free(current);
+	(*stack)->prev = NULL;
+	tmp->next = NULL;
+	free(tmp);
 }
 
 /**
