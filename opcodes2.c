@@ -9,24 +9,23 @@
 
 void add(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp, *current;
+	stack_t *tmp;
 	int a, b, sum;
 
-	if ((*stack) == NULL || (*stack)->next == NULL)
+	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		exit_msg2("add", line_number);
 	}
-	tmp = (*stack)->next;
+	tmp = *stack;
+	*stack = (*stack)->next; 
 
 	a = (*stack)->n;
 	b = tmp->n;
 	sum = a + b;
 
 	(*stack)->n = sum;
-	current = tmp;
-	tmp = tmp->next;
-	(*stack)->next = tmp;
-	free(current);
+	(*stack)->prev = NULL;
+	free(tmp);
 }
 
 /**
