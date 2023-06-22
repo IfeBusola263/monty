@@ -110,17 +110,18 @@ void pint(stack_t **stack, unsigned int line_number)
 
 void swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp, *current;
-	int n;
+	stack_t *tmp = NULL;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		exit_msg2("swap", line_number);
 	}
-	tmp = *stack;
-	current = (*stack)->next;
-
-	n = tmp->n;
-	tmp->n = current->n;
-	current->n = n;
+	tmp = (*stack)->next;
+	(*stack)->next = tmp->next;
+	tmp->next->prev = *stack;
+	(*stack)->prev = tmp;
+	tmp->next = *stack;
+	tmp->prev = NULL;
+	*stack = tmp;
+	tmp = NULL;
 }
