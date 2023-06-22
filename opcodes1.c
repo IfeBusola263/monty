@@ -70,6 +70,7 @@ void pop(stack_t **stack, unsigned int line_number)
 	if (*stack != NULL && (*stack)->next != NULL)
 	{
 		*stack = (*stack)->next;
+		(*stack)->prev = NULL;
 		free(tmp);
 	}
 	else if (*stack != NULL && (*stack)->next == NULL)
