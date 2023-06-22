@@ -112,7 +112,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	stack_t *tmp, *current;
 	int n;
 
-	if ((*stack) == NULL || (*stack)->next == NULL)
+	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		exit_msg2("swap", line_number);
 	}

@@ -7,13 +7,16 @@
  */
 void _free_stack(stack_t *h)
 {
-	while (h->next)
+	if (h != NULL)
 	{
-		h = h->next;
-		free(h->prev);
+		while (h->next)
+		{
+			h = h->next;
+			free(h->prev);
+		}
+		free(h);
+		h = NULL;
 	}
-	free(h);
-	h = NULL;
 }
 /**
  * _free - free string

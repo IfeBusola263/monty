@@ -115,12 +115,15 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 		{"sub", sub},{"div", divy},
 		{"mul", mul},{"mod", mod},
 		{"pchar", pchar},{"pstr", pstr},
-		/* {"rotl", rotl},{"rotr", rotr}, {"nop", nop}*/
+		{"rotl", rotl}
+		/*{"rotr", rotr},{"nop", nop}*/
 	};
 
 	len = sizeof(array) / sizeof(array[0]);
  	for (i = 0; i < len; i++)
 	{
+		/*if (tk_line[i][0] == '#')
+		  continue;*/
 		if (strcmp(array[i].opcode, tk_line[0]) == 0)
 		{
 			if (strcmp(tk_line[0], "push") == 0)
@@ -133,6 +136,7 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 				array[i].f(head, line_number);
 				return (1);
 			}
+
 			array[i].f(head, line_number);
 			return (1);
 		}
