@@ -55,3 +55,44 @@ void pstr(stack_t **stack, unsigned int line_number)
 		tmp = tmp->next;
 	}
 }
+
+/**
+ * rotl - rotates the top to the bottom
+ * @stack: pointer to the beginning of stack_t list
+ * @line_number: is the arguments to the opcodes
+ * Return: nothing
+ */
+
+void rotl(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp, *tail_stack, *new_stack;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		/*print error msg*/
+	}
+
+	tmp = *stack;
+	new_stack = (*stack)->next;
+	tail_stack = *stack;
+
+	while (tail_stack->next != NULL)
+	{
+		tail_stack = tail_stack->next;
+	}
+
+	*stack = new_stack;
+	new_stack->prev = NULL;
+	tail_stack->next = tmp;
+	tmp->prev = tail_stack;
+	tmp->next = NULL;
+}
+
+/**
+ * rotr - reverses the stack_t list elements
+ * @stack: is pointer to the beginning of the list
+ * @line_number: contains arguments for the opcode
+ * Return: nothing
+ */
+
+
