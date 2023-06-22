@@ -52,7 +52,7 @@ void sub(stack_t **stack, unsigned int line_number)
 	(*stack)->prev = NULL;
 	tmp->next = NULL;
 	free(tmp);
-	tmp = NULL:
+	tmp = NULL;
 }
 
 /**
