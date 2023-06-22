@@ -70,15 +70,18 @@ void pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
 
-	if (*stack == NULL)
+	if (*stack != NULL && (*stack)->next != NULL)
 	{
-		exit_msg2("pop", line_number);
+		*stack = (*stack)->next;
+		free(tmp);
 	}
-
-	(*stack) = (*stack)->next;
-	if (*stack != NULL)
-		(*stack)->prev = NULL;
-	free(tmp);
+	else if (*stack != NULL && (*stack)->next == NULL)
+	{
+		free(*stack);
+		*stack = NULL;
+	}
+	if (*stack == NULL)
+		exit_msg2("pop", line_number);
 }
 
 /**
@@ -90,11 +93,11 @@ void pop(stack_t **stack, unsigned int line_number)
 
 void pint(stack_t **stack, unsigned int line_number)
 {
-	if (*stack == NULL)
+	if (*stack != NULL)
 	{
-		exit_msg2("pint", line_number);
+		printf("%d\n", (*stack)->n);
 	}
-	printf("%d\n", (*stack)->n);
+	exit_msg2("pint", line_number);
 }
 
 /**
