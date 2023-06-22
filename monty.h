@@ -47,7 +47,7 @@ void exit_msg(char *cmd, int pos);
 void buff_fill(char **buff, int size);
 size_t _readline(char **buff, size_t *n, FILE *fildes, char *filename);
 void parser(char **lines, char **parse, stack_t **h);
-size_t stack_operations(char **tk_line, stack_t **head);
+size_t stack_operations(char **tk_line, stack_t **head, int line_number);
 void push(stack_t **h, unsigned int line_number);
 void pall(stack_t **h, unsigned int line_number);
 void _free_stack(stack_t *h);
