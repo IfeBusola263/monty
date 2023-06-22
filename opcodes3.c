@@ -20,7 +20,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 
 	a = (*stack)->n;
 
-	if (a >= 65 && a <= 90 || a >= 97 && a <= 126)
+	if ((a >= 65 && a <= 90) || (a >= 97 && a <= 126))
 	{
 		putchar(a);
 	}

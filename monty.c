@@ -1,5 +1,6 @@
 #include "monty.h"
 mem_t number = {0};
+mem_t tail = NULL;
 /**
  * main - This the interpreter entry point
  * @ac: argument counter
