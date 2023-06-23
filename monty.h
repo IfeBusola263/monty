@@ -44,6 +44,7 @@ typedef struct instruction_s
  * @bottom: stack tail
  * @headstack: holds address of the headstack
  * @readline: holds the address of buffer of lines
+ * @liNumb: accounts for line numbers
  *
  * Description: Global variable structure
  */

@@ -72,7 +72,7 @@ size_t _readline(char **buff, size_t *n, FILE *fildes, char *filename)
 			exit_msg(filename, 91);
 		}
 		/* check if it's EOF before null terminating */
-		if (numRead != -1)
+		if (numRead > 0 && strcmp(*buff, "\n") != 0)
 		{
 			(*buff)[numRead - 1] = '\0';
 			buff++;
@@ -95,22 +95,23 @@ void parser(char **lines, char **parse, stack_t **h)
 	int i, j = 0;
 	char *token;
 
+	if (*lines == NULL)
+		printf("(nul)\n");
 	/* parse the string by storing each word in the string */
 	/* by tokenizing the string into individual words */
 	for (i = 0; lines[i]; i++)
 	{
-		token = strtok(lines[i], " ");
+		token = strtok(lines[i], " \n");
 		while (token)
 		{
 			parse[j] = token;
-			token = strtok(NULL, " ");
+			token = strtok(NULL, " \n");
 			j++;
 		}
 		/* empty lines not accounted as valid line number */
-		if (i == 0 && *parse != NULL)
+		if ((i == 0 && *parse != NULL) || i > 0)
 			number.liNumb++;
-		if (i > 0)
-			number.liNumb++;
+
 		if (stack_operations(parse, h, number.liNumb) != 1)
 			exit_msg(parse[0], number.liNumb);
 
@@ -126,12 +127,10 @@ void parser(char **lines, char **parse, stack_t **h)
  *
  *Return: 1 or 0
  */
-size_t stack_operations(char **tk_line, stack_t **head, int line_number )
+size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 {
 	unsigned int i, len;
-	/* array of structures; each structure contains a mapping*/
-	/* of each instruction(left) and the function(right) that*/
-	/* that executes the instruction*/
+	/* array of structures; struct maps instruction to func executing it*/
 	instruction_t array[] = {
 		{"push", push}, {"pall", pall},
 		{"pint", pint}, {"pop", pop},
@@ -142,16 +141,15 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number )
 		{"rotl", rotl}, {"rotr", rotr},
 	};
 
-	if (tk_line[0] == NULL) /* handle no instruction */
+	if (tk_line == NULL) /* handle no instruction */
 		return (1);
-
 	len = sizeof(array) / sizeof(array[0]);
 	for (i = 0; i < len; i++)
 	{
 		/* handle comment and 'nop' instruction call */
 		if (tk_line[0][0] == '#' || strcmp(tk_line[0], "nop") == 0)
 			return (1);
-		/* instruction with the instructions in the array of structs */ 
+		/* instruction with the instructions in the array of structs */
 		if (strcmp(array[i].opcode, tk_line[0]) == 0)
 		{
 			if (strcmp(tk_line[0], "push") == 0)
@@ -170,6 +168,5 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number )
 			return (1);
 		}
 	}
-
 	return (0);
 }
