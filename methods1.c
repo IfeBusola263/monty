@@ -99,11 +99,11 @@ void parser(char **lines, char **parse, stack_t **h)
 	/* by tokenizing the string into individual words */
 	for (i = 0; lines[i]; i++)
 	{
-		token = strtok(lines[i], " \n");
+		token = strtok(lines[i], " ");
 		while (token)
 		{
 			parse[j] = token;
-			token = strtok(NULL, " \n");
+			token = strtok(NULL, " ");
 			j++;
 		}
 		/* empty lines not accounted as valid line number */
@@ -111,7 +111,7 @@ void parser(char **lines, char **parse, stack_t **h)
 			number.liNumb++;
 		if (i > 0)
 			number.liNumb++;
-		
+
 		if (stack_operations(parse, h, number.liNumb) != 1)
 			exit_msg(parse[0], number.liNumb);
 
