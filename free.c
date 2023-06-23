@@ -44,38 +44,46 @@ void exit_msg2(char *op, int liNum)
 	if (strcmp(op, "push") == 0)
 	{
 		dprintf(2, "L%d: usage: %s integer\n", liNum, op);
-		_free_stack(number.headstack);
-		_free(number.readline);
+		glob_free();
 		exit(EXIT_FAILURE);
 	} else if (strcmp(op, "pint") == 0)
 	{
 		dprintf(2, "L%d: can't %s, stack empty\n", liNum, op);
-		_free_stack(number.headstack);
-		_free(number.readline);
+		glob_free();
 		exit(EXIT_FAILURE);
 	} else if (strcmp(op, "pop") == 0)
 	{
 		dprintf(2, "L%d: can't %s an empty stack\n", liNum, op);
-		_free_stack(number.headstack);
-		_free(number.readline);
+		glob_free();
 		exit(EXIT_FAILURE);
 	} else if (strcmp(op, "pchar") == 0)
 	{
 		dprintf(2, "L%d: can't %s value out of range\n", liNum, op);
-		_free_stack(number.headstack);
-		_free(number.readline);
+		glob_free();
 		exit(EXIT_FAILURE);
 	} else if (strcmp(op, "zerodiv") == 0)
 	{
 		dprintf(2, "L%d: division by zero\n", liNum);
-		_free_stack(number.headstack);
-		_free(number.readline);
+		glob_free();
 		exit(EXIT_FAILURE);
+	} else if (strcmp(op, "pchar2"))
+	{
+		dprintf(2, "L%d: can't pchar, stack empty\n", liNum);
+		glob_free();
 	} else
 	{
 		dprintf(2, "L%d: can't %s stack too short\n", liNum, op);
-		_free_stack(number.headstack);
-		_free(number.readline);
+		glob_free();
 		exit(EXIT_FAILURE);
 	}
+}
+/**
+ * glob_free - frees mem from any point in the program
+ *
+ * Return: returns nothing
+ */
+void glob_free(void)
+{
+	_free_stack(number.headstack);
+	_free(number.readline);
 }

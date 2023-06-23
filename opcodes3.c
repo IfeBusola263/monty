@@ -12,14 +12,18 @@ void pchar(stack_t **stack, unsigned int line_number)
 {
 	int a;
 
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (*stack == NULL)
+	{
+		exit_msg2("pchar2", line_number);
+	}
+	if ((*stack)->n < 0 || (*stack)->n > 126)
 	{
 		exit_msg2("pchar", line_number);
 	}
 
 	a = (*stack)->n;
 
-	if ((a >= 65 && a <= 90) || (a >= 97 && a <= 126))
+	if ((a >= 0 || a <= 126))
 	{
 		putchar(a);
 	}
@@ -40,7 +44,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 
 	(void)line_number;
 
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (*stack == NULL)
 	{
 		printf("\n");
 	}
@@ -50,14 +54,14 @@ void pstr(stack_t **stack, unsigned int line_number)
 	while (tmp != NULL)
 	{
 		a = tmp->n;
-		if (a <= 0 || a > 255)
+		if (a <= 0 || a > 127)
 		{
 			break;
 		}
 		putchar(a);
-		putchar('\n');
 		tmp = tmp->next;
 	}
+	putchar('\n');
 }
 
 /**
