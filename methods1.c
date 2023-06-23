@@ -141,7 +141,7 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 		{"rotl", rotl}, {"rotr", rotr},
 	};
 
-	if (tk_line == NULL) /* handle no instruction */
+	if (tk_line[0] == NULL) /* handle no instruction */
 		return (1);
 	len = sizeof(array) / sizeof(array[0]);
 	for (i = 0; i < len; i++)
@@ -149,7 +149,7 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 		/* handle comment and 'nop' instruction call */
 		if (tk_line[0][0] == '#' || strcmp(tk_line[0], "nop") == 0)
 			return (1);
-		/* instruction with the instructions in the array of structs */
+		/* compare with the instructions in the array of structs */
 		if (strcmp(array[i].opcode, tk_line[0]) == 0)
 		{
 			if (strcmp(tk_line[0], "push") == 0)
