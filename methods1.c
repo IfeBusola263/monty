@@ -107,7 +107,7 @@ void parser(char **lines, char **parse, stack_t **h)
 			j++;
 		}
 		/* empty lines not accounted as valid line number */
-		if (i == 0 && *parse != NULL)
+		if (*parse != NULL)
 			number.liNumb++;
 		if (i > 0)
 			number.liNumb++;
