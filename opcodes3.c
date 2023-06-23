@@ -112,12 +112,12 @@ void rotr(stack_t **stack, unsigned int line_number)
 	tmp->prev = cur;
 	tmp->next = NULL;
 
-	while (cur->next != NULL)
+	while (cur != NULL)
 	{
 		cur->prev = cur->next;
 		cur->next = tmp;
 		tmp = cur;
 		cur = cur->prev;
 	}
-	*stack = cur;
+	*stack = tmp;
 }
