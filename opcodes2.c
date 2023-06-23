@@ -11,7 +11,11 @@ void add(stack_t **stack, unsigned int line_number)
 	stack_t *tmp;
 	int sum;
 
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (*stack == NULL)
+	{
+		return;
+	}
+	if ((*stack)->next == NULL)
 	{
 		exit_msg2("add", line_number);
 	}
