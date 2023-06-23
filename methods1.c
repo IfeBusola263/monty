@@ -122,7 +122,7 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 		{"sub", sub}, {"div", divy},
 		{"mul", mul}, {"mod", mod},
 		{"pchar", pchar}, {"pstr", pstr},
-		{"rotl", rotl} /*{"rotr", rotr}*/
+		{"rotl", rotl}, {"rotr", rotr},
 	};
 
 	if (tk_line[0] == NULL)
