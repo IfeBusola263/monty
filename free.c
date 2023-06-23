@@ -66,7 +66,7 @@ void exit_msg2(char *op, int liNum)
 		dprintf(2, "L%d: division by zero\n", liNum);
 		glob_free();
 		exit(EXIT_FAILURE);
-	} else if (strcmp(op, "pchar2"))
+	} else if (strcmp(op, "pchar2") == 0)
 	{
 		dprintf(2, "L%d: can't pchar, stack empty\n", liNum);
 		glob_free();
