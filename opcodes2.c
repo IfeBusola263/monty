@@ -15,7 +15,7 @@ void add(stack_t **stack, unsigned int line_number)
 	{
 		return;
 	}
-	if ((*stack)->next == NULL)
+	if (*stack != NULL && (*stack)->next == NULL)
 	{
 		exit_msg2("add", line_number);
 	}
@@ -43,7 +43,11 @@ void sub(stack_t **stack, unsigned int line_number)
 	int result;
 	stack_t *tmp = NULL;
 
-	if ((*stack) == NULL || (*stack)->next == NULL)
+	if ((*stack) == NULL)
+	{
+		return;
+	}
+	if (*stack != NULL && (*stack)->next == NULL)
 	{
 		exit_msg2("sub", line_number);
 	}
@@ -72,19 +76,24 @@ void mod(stack_t **stack, unsigned int line_number)
 	stack_t *tmp = NULL;
 	int result;
 
-	if ((*stack) == NULL || (*stack)->next == NULL)
+	if ((*stack) == NULL)
+	{
+		return;
+	}
+	if (*stack != NULL && (*stack)->next == NULL)
 	{
 		exit_msg2("mod", line_number);
 	}
 	if ((*stack)->n == 0)
 	{
-		exit_msg2("mod2", line_number);
+		exit_msg2("zerodiv", line_number);
 	}
 	tmp = *stack;
 	*stack = (*stack)->next;
 
 	result = (*stack)->n % tmp->n;
 	(*stack)->n = result;
+	(*stack)->prev = NULL;
 	tmp->next = NULL;
 	free(tmp);
 	tmp = NULL;
@@ -99,25 +108,24 @@ void mod(stack_t **stack, unsigned int line_number)
 
 void mul(stack_t **stack, unsigned int line_number)
 {
-	int a, b, result;
-	stack_t *tmp, *current;
+	stack_t *tmp;
 
-	if ((*stack) == NULL || (*stack)->next == NULL)
+	if ((*stack) == NULL)
+	{
+		return;
+	}
+	if (*stack != NULL && (*stack)->next == NULL)
 	{
 		exit_msg2("mul", line_number);
 	}
 
-	tmp = (*stack)->next;
-	a = tmp->n;
-	b = (*stack)->n;
-	result = a * b;
+	tmp = *stack;
+	(*stack)->n = tmp->n * (*stack)->n;
 
-	(*stack)->n = result;
-
-	current = tmp;
-	tmp = tmp->next;
-	(*stack)->next = tmp;
-	free(current);
+	tmp->next = NULL;
+	(*stack)->prev = NULL;
+	free(tmp);
+	tmp = NULL;
 }
 
 /**
@@ -129,23 +137,27 @@ void mul(stack_t **stack, unsigned int line_number)
 
 void divy(stack_t **stack, unsigned int line_number)
 {
-	int a, b, result;
-	stack_t *tmp, *current;
+	stack_t *tmp = NULL;
 
-	if ((*stack) == NULL || (*stack)->next == NULL)
-	{
-		exit_msg2("divy", line_number);
-	}
+	if ((*stack) == NULL)
+        {
+                return;
+        }
+        if (*stack != NULL && (*stack)->next == NULL)
+        {
+                exit_msg2("div", line_number);
+        }
+        if ((*stack)->n == 0)
+        {
+                exit_msg2("zerodiv", line_number);
+        }
 
-	tmp = (*stack)->next;
-	a = tmp->n;
-	b = (*stack)->n;
-	result = a / b;
+	tmp = *stack;
+	*stack = (*stack)->next;
+	(*stack)->n = (*stack)->n / tmp->n;
 
-	(*stack)->n = result;
-
-	current = tmp;
-	tmp = tmp->next;
-	(*stack)->next = tmp;
-	free(current);
+	tmp->next = NULL;
+	(*stack)->prev = NULL;
+	free(tmp);
+	tmp = NULL;
 }

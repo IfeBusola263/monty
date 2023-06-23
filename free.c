@@ -65,7 +65,7 @@ void exit_msg2(char *op, int liNum)
 		_free_stack(number.headstack);
 		_free(number.readline);
 		exit(EXIT_FAILURE);
-	} else if (strcmp(op, "mod2") == 0)
+	} else if (strcmp(op, "zerodiv") == 0)
         {
                 dprintf(2, "L%d: division by zero\n", liNum);
                 _free_stack(number.headstack);
