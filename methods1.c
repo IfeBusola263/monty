@@ -106,12 +106,9 @@ void parser(char **lines, char **parse, stack_t **h)
 			token = strtok(NULL, " ");
 			j++;
 		}
-		printf("when i is :%d parse is %s. \n", i, *parse);
 		/* empty lines not accounted as valid line number */
 		if (i == 0 && *parse == NULL)
-		{
-			 continue;
-		}
+			continue;
 		else
 			number.liNumb++;
 
