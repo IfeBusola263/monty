@@ -47,30 +47,31 @@ void exit_msg2(char *op, int liNum)
 		_free_stack(number.headstack);
 		_free(number.readline);
 		exit(EXIT_FAILURE);
-	}
-
-	else if (strcmp(op, "pint") == 0)
+	} else if (strcmp(op, "pint") == 0)
 	{
 		dprintf(2, "L%d: can't %s, stack empty\n", liNum, op);
 		_free_stack(number.headstack);
 		_free(number.readline);
 		exit(EXIT_FAILURE);
-	}
-	else if (strcmp(op, "pop") == 0)
+	} else if (strcmp(op, "pop") == 0)
 	{
 		dprintf(2, "L%d: can't %s an empty stack\n", liNum, op);
 		_free_stack(number.headstack);
 		_free(number.readline);
 		exit(EXIT_FAILURE);
-	}
-	else if (strcmp(op, "pchar") == 0)
+	} else if (strcmp(op, "pchar") == 0)
 	{
 		dprintf(2, "L%d: can't %s value out of range\n", liNum, op);
 		_free_stack(number.headstack);
 		_free(number.readline);
 		exit(EXIT_FAILURE);
-	}
-	else
+	} else if (strcmp(op, "mod2") == 0)
+        {
+                dprintf(2, "L%d: division by zero\n", liNum);
+                _free_stack(number.headstack);
+                _free(number.readline);
+                exit(EXIT_FAILURE);
+        } else
 	{
 		dprintf(2, "L%d: can't %s stack too short\n", liNum, op);
 		_free_stack(number.headstack);

@@ -65,25 +65,25 @@ void sub(stack_t **stack, unsigned int line_number)
 
 void mod(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp, *current;
-	int a, b, result;
+	stack_t *tmp = NULL;
+	int result;
 
 	if ((*stack) == NULL || (*stack)->next == NULL)
 	{
 		exit_msg2("mod", line_number);
 	}
+	if ((*stack)->n == 0)
+	{
+		exit_msg2("mod2", line_number);
+	}
+	tmp = *stack;
+	*stack = (*stack)->next;
 
-	tmp = (*stack)->next;
-	a = tmp->n;
-	b = (*stack)->n;
-	result = a % b;
-
+	result = (*stack)->n % tmp->n;
 	(*stack)->n = result;
-
-	current = tmp;
-	tmp = tmp->next;
-	(*stack)->next = tmp;
-	free(current);
+	tmp->next = NULL;
+	free(tmp);
+	tmp = NULL;
 }
 
 /**
