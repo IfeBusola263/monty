@@ -50,6 +50,7 @@ typedef struct instruction_s
 typedef struct mem_s
 {
 	int num;
+	int liNumb;
 	stack_t *bottom;
 	stack_t **headstack;
 	char **readline;

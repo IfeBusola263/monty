@@ -43,6 +43,7 @@ void buff_fill(char **buff, int size)
 {
 	int i;
 
+	/* fill array created on the stack with NULL */
 	for (i = 0; i < size; i++)
 		buff[i] = NULL;
 }
@@ -57,21 +58,23 @@ void buff_fill(char **buff, int size)
  */
 size_t _readline(char **buff, size_t *n, FILE *fildes, char *filename)
 {
-	ssize_t read = 0;
+	ssize_t numRead = 0;
 	size_t count = 0;
 
-	while (read != -1)
+	while (numRead != -1)
 	{
-		read = getline(buff, n, fildes);
-		if (read == -1 && count == 0)
+		/* read each line from the file */
+		numRead = getline(buff, n, fildes);
+		if (numRead == -1 && count == 0)
 		{
 			_free(number.readline);
 			fclose(fildes);
 			exit_msg(filename, 91);
 		}
-		if (read != -1)
+		/* check if it's EOF before null terminating */
+		if (numRead != -1)
 		{
-			(*buff)[read - 1] = '\0';
+			(*buff)[numRead - 1] = '\0';
 			buff++;
 			count++;
 		}
@@ -92,6 +95,8 @@ void parser(char **lines, char **parse, stack_t **h)
 	int i, j = 0;
 	char *token;
 
+	/* parse the string by storing each word in the string */
+	/* by tokenizing the string into individual words */
 	for (i = 0; lines[i]; i++)
 	{
 		token = strtok(lines[i], " ");
@@ -101,8 +106,11 @@ void parser(char **lines, char **parse, stack_t **h)
 			token = strtok(NULL, " ");
 			j++;
 		}
-		if (stack_operations(parse, h, i + 1) != 1)
-			exit_msg(parse[0], i + j);
+		/* empty lines not accounted as valid line number */
+		if (*parse != NULL)
+			number.liNumb++;
+		if (stack_operations(parse, h, number.liNumb) != 1)
+			exit_msg(parse[0], number.liNumb);
 
 		buff_fill(parse, j);
 		j = 0;
@@ -116,9 +124,12 @@ void parser(char **lines, char **parse, stack_t **h)
  *
  *Return: 1 or 0
  */
-size_t stack_operations(char **tk_line, stack_t **head, int line_number)
+size_t stack_operations(char **tk_line, stack_t **head, int line_number )
 {
 	unsigned int i, len;
+	/* array of structures; each structure contains a mapping*/
+	/* of each instruction(left) and the function(right) that*/
+	/* that executes the instruction*/
 	instruction_t array[] = {
 		{"push", push}, {"pall", pall},
 		{"pint", pint}, {"pop", pop},
@@ -129,27 +140,30 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 		{"rotl", rotl}, {"rotr", rotr},
 	};
 
-	if (tk_line[0] == NULL)
+	if (tk_line[0] == NULL) /* handle no instruction */
 		return (1);
 
 	len = sizeof(array) / sizeof(array[0]);
 	for (i = 0; i < len; i++)
 	{
+		/* handle comment and 'nop' instruction call */
 		if (tk_line[0][0] == '#' || strcmp(tk_line[0], "nop") == 0)
 			return (1);
+		/* instruction with the instructions in the array of structs */ 
 		if (strcmp(array[i].opcode, tk_line[0]) == 0)
 		{
 			if (strcmp(tk_line[0], "push") == 0)
 			{
+				/* check if push has the valid argument */
 				if (!tk_line[1] || check_arg(tk_line[1]) == 0)
 				{
 					exit_msg2(tk_line[0], line_number);
 				}
 				number.num = atoi(tk_line[1]);
-				array[i].f(head, line_number);
+				array[i].f(head, line_number);/* execute */
 				return (1);
 			}
-
+			/* execution for other instructions without arguments */
 			array[i].f(head, line_number);
 			return (1);
 		}

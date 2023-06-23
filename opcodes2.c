@@ -11,11 +11,7 @@ void add(stack_t **stack, unsigned int line_number)
 	stack_t *tmp;
 	int sum;
 
-	if (*stack == NULL)
-	{
-		return;
-	}
-	if (*stack != NULL && (*stack)->next == NULL)
+	if (*stack == NULL && (*stack)->next == NULL)
 	{
 		exit_msg2("add", line_number);
 	}
@@ -43,11 +39,7 @@ void sub(stack_t **stack, unsigned int line_number)
 	int result;
 	stack_t *tmp = NULL;
 
-	if ((*stack) == NULL)
-	{
-		return;
-	}
-	if (*stack != NULL && (*stack)->next == NULL)
+	if (*stack == NULL && (*stack)->next == NULL)
 	{
 		exit_msg2("sub", line_number);
 	}
@@ -76,11 +68,7 @@ void mod(stack_t **stack, unsigned int line_number)
 	stack_t *tmp = NULL;
 	int result;
 
-	if ((*stack) == NULL)
-	{
-		return;
-	}
-	if (*stack != NULL && (*stack)->next == NULL)
+	if (*stack == NULL && (*stack)->next == NULL)
 	{
 		exit_msg2("mod", line_number);
 	}
@@ -110,11 +98,7 @@ void mul(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
 
-	if ((*stack) == NULL)
-	{
-		return;
-	}
-	if (*stack != NULL && (*stack)->next == NULL)
+	if (*stack == NULL && (*stack)->next == NULL)
 	{
 		exit_msg2("mul", line_number);
 	}
@@ -140,11 +124,7 @@ void divy(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = NULL;
 
-	if ((*stack) == NULL)
-	{
-		return;
-	}
-	if (*stack != NULL && (*stack)->next == NULL)
+	if (*stack == NULL && (*stack)->next == NULL)
 	{
 		exit_msg2("div", line_number);
 	}
