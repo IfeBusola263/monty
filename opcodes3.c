@@ -69,7 +69,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 
 void rotl(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp, *tail_stack, *new_stack;
+	stack_t *tmp = NULL, *tail_stack = NULL, *new_stack = NULL;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
@@ -90,6 +90,9 @@ void rotl(stack_t **stack, unsigned int line_number)
 	tail_stack->next = tmp;
 	tmp->prev = tail_stack;
 	tmp->next = NULL;
+	tmp = NULL;
+	new_stack = NULL;
+	tail_stack = NULL;
 }
 
 /**
