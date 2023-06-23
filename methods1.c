@@ -72,7 +72,7 @@ size_t _readline(char **buff, size_t *n, FILE *fildes, char *filename)
 			exit_msg(filename, 91);
 		}
 		/* check if it's EOF before null terminating */
-		if (numRead > 0 && strcmp(*buff, "\n") != 0)
+		if (numRead != 1)
 		{
 			(*buff)[numRead - 1] = '\0';
 			buff++;
