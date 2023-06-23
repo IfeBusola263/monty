@@ -140,17 +140,17 @@ void divy(stack_t **stack, unsigned int line_number)
 	stack_t *tmp = NULL;
 
 	if ((*stack) == NULL)
-        {
-                return;
-        }
-        if (*stack != NULL && (*stack)->next == NULL)
-        {
-                exit_msg2("div", line_number);
-        }
-        if ((*stack)->n == 0)
-        {
-                exit_msg2("zerodiv", line_number);
-        }
+	{
+		return;
+	}
+	if (*stack != NULL && (*stack)->next == NULL)
+	{
+		exit_msg2("div", line_number);
+	}
+	if ((*stack)->n == 0)
+	{
+		exit_msg2("zerodiv", line_number);
+	}
 
 	tmp = *stack;
 	*stack = (*stack)->next;

@@ -66,12 +66,12 @@ void exit_msg2(char *op, int liNum)
 		_free(number.readline);
 		exit(EXIT_FAILURE);
 	} else if (strcmp(op, "zerodiv") == 0)
-        {
-                dprintf(2, "L%d: division by zero\n", liNum);
-                _free_stack(number.headstack);
-                _free(number.readline);
-                exit(EXIT_FAILURE);
-        } else
+	{
+		dprintf(2, "L%d: division by zero\n", liNum);
+		_free_stack(number.headstack);
+		_free(number.readline);
+		exit(EXIT_FAILURE);
+	} else
 	{
 		dprintf(2, "L%d: can't %s stack too short\n", liNum, op);
 		_free_stack(number.headstack);
