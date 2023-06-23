@@ -72,7 +72,7 @@ size_t _readline(char **buff, size_t *n, FILE *fildes, char *filename)
 			exit_msg(filename, 91);
 		}
 		/* check if it's EOF before null terminating */
-		if (numRead != 1)
+		if (numRead != -1)
 		{
 			(*buff)[numRead - 1] = '\0';
 			buff++;
@@ -106,14 +106,19 @@ void parser(char **lines, char **parse, stack_t **h)
 			token = strtok(NULL, " ");
 			j++;
 		}
+		printf("when i is :%d parse is %s. \n", i, *parse);
 		/* empty lines not accounted as valid line number */
-		if (i == 0 && *parse != NULL)
-			number.liNumb = 0;
-		number.liNumb++;
+		if (i == 0 && *parse == NULL)
+		{
+			 continue;
+		}
+		else
+			number.liNumb++;
 
 		if (stack_operations(parse, h, number.liNumb) != 1)
+		{
 			exit_msg(parse[0], number.liNumb);
-
+		}
 		buff_fill(parse, j);
 		j = 0;
 	}
