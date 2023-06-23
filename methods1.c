@@ -64,7 +64,11 @@ size_t _readline(char **buff, size_t *n, FILE *fildes, char *filename)
 	{
 		read = getline(buff, n, fildes);
 		if (read == -1 && count == 0)
+		{
+			_free(number.readline);
+			fclose(fildes);
 			exit_msg(filename, 91);
+		}
 		if (read != -1)
 		{
 			(*buff)[read - 1] = '\0';
