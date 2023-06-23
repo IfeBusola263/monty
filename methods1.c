@@ -95,8 +95,6 @@ void parser(char **lines, char **parse, stack_t **h)
 	int i, j = 0;
 	char *token;
 
-	if (*lines == NULL)
-		printf("(nul)\n");
 	/* parse the string by storing each word in the string */
 	/* by tokenizing the string into individual words */
 	for (i = 0; lines[i]; i++)
