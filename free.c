@@ -58,7 +58,7 @@ void exit_msg2(char *op, int liNum)
 		exit(EXIT_FAILURE);
 	} else if (strcmp(op, "pchar") == 0)
 	{
-		dprintf(2, "L%d: can't %s value out of range\n", liNum, op);
+		dprintf(2, "L%d: can't %s, stack empty\n", liNum, op);
 		glob_free();
 		exit(EXIT_FAILURE);
 	} else if (strcmp(op, "zerodiv") == 0)
@@ -68,7 +68,7 @@ void exit_msg2(char *op, int liNum)
 		exit(EXIT_FAILURE);
 	} else if (strcmp(op, "pchar2") == 0)
 	{
-		dprintf(2, "L%d: can't pchar, stack empty\n", liNum);
+		dprintf(2, "L%d: can't %s value out of range\n", liNum, op);
 		glob_free();
 		exit(EXIT_FAILURE);
 	} else
