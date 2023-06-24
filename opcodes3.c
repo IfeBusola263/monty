@@ -14,11 +14,11 @@ void pchar(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL)
 	{
-		exit_msg2("pchar2", line_number);
+		exit_msg2("pchar", line_number);
 	}
 	if ((*stack)->n < 0 || (*stack)->n > 126)
 	{
-		exit_msg2("pchar", line_number);
+		exit_msg2("pchar2", line_number);
 	}
 
 	a = (*stack)->n;
