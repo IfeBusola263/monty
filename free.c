@@ -70,6 +70,7 @@ void exit_msg2(char *op, int liNum)
 	{
 		dprintf(2, "L%d: can't pchar, stack empty\n", liNum);
 		glob_free();
+		exit(EXIT_FAILURE);
 	} else
 	{
 		dprintf(2, "L%d: can't %s stack too short\n", liNum, op);
