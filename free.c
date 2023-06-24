@@ -68,7 +68,7 @@ void exit_msg2(char *op, int liNum)
 		exit(EXIT_FAILURE);
 	} else if (strcmp(op, "pchar2") == 0)
 	{
-		dprintf(2, "L%d: can't pchar value out of range\n", op);
+		dprintf(2, "L%d: can't pchar value out of range\n", liNum);
 		glob_free();
 		exit(EXIT_FAILURE);
 	} else
