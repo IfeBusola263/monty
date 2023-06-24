@@ -73,7 +73,7 @@ void exit_msg2(char *op, int liNum)
 		exit(EXIT_FAILURE);
 	} else
 	{
-		dprintf(2, "L%d: can't %s stack too short\n", liNum, op);
+		dprintf(2, "L%d: can't %s, stack too short\n", liNum, op);
 		glob_free();
 		exit(EXIT_FAILURE);
 	}
