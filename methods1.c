@@ -112,11 +112,6 @@ void parser(char **lines, char **parse, stack_t **h)
 		else
 			number.liNumb++;
 
-		if (strcmp(*parse, "stack") == 0 || strcmp(*parse, "queue") == 0)
-		{
-			_mode(*parse);
-			continue;
-		}
 		if (stack_operations(parse, h, number.liNumb) != 1)
 		{
 			exit_msg(parse[0], number.liNumb);
@@ -146,10 +141,14 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 
 	if (tk_line[0] == NULL) /* handle no instruction */
 		return (1);
+	if (strcmp(tk_line[0], "stack") == 0 || strcmp(tk_line[0], "queue") == 0)
+	{
+		_mode(tk_line[0]); /* switch mode stack and queue */
+		return (1);
+	}
 	len = sizeof(array) / sizeof(array[0]);
 	for (i = 0; i < len; i++)
-	{
-		/* handle comment and 'nop' instruction call */
+	{       /* handle comment and 'nop' instruction call */
 		if (tk_line[0][0] == '#' || strcmp(tk_line[0], "nop") == 0)
 			return (1);
 		/* compare with the instructions in the array of structs */
@@ -165,8 +164,7 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 				number.num = atoi(tk_line[1]);
 				array[i].f(head, line_number);/* execute */
 				return (1);
-			}
-			/* execution for other instructions without arguments */
+			} /* execution for other instructions without arguments */
 			array[i].f(head, line_number);
 			return (1);
 		}

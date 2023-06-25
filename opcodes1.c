@@ -17,7 +17,7 @@ void push(stack_t **h, unsigned int line_number)
 
 	(void)line_number;
 	newNode->n = number.num;
-	if (*h == NULL)
+	if (*h != NULL)
 	{
 		if (strcmp(number.mode, "stack") == 0)
 		{
@@ -35,10 +35,10 @@ void push(stack_t **h, unsigned int line_number)
 			number.bottom = newNode;
 			return;
 	}
-	number.bottom = newNode;
 	newNode->prev = NULL;
 	newNode->next = NULL;
 	*h = newNode;
+	number.bottom = *h;
 }
 /**
  * pall - prints all the item of the stack
