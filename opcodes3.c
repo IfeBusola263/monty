@@ -134,7 +134,6 @@ void rotr(stack_t **stack, unsigned int line_number)
 		 * cur = cur->prev;
 		 */
 	}
-	number.bottom = tmp->prev;
 	tmp->prev->next = NULL;
 	tmp->prev = NULL;
 	tmp->next = *stack;
