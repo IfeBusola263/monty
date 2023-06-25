@@ -80,8 +80,7 @@ void rotl(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		glob_free();
-		exit(EXIT_FAILURE);
+		return;
 	}
 
 	tmp = *stack;
