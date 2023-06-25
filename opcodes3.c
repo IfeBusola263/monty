@@ -142,3 +142,19 @@ void rotr(stack_t **stack, unsigned int line_number)
 	/* stack = tmp; */
 	/* tmp = NULL; */
 }
+
+/**
+ * _mode - sets mode to either stack or queue
+ * @init: the mode initialized
+ *
+ * Return: return nothing
+ */
+void _mode(char *init)
+{
+	if (strcmp(init, "queue") == 0)
+	{
+		number.mode = init;
+	}
+	else
+		number.mode = init;
+}

@@ -17,18 +17,25 @@ void push(stack_t **h, unsigned int line_number)
 
 	(void)line_number;
 	newNode->n = number.num;
-
-	if (*h != NULL)
+	if (*h == NULL)
 	{
-		ptr = *h;
-		newNode->next = ptr;
-		newNode->prev = NULL;
-		ptr->prev = newNode;
-		*h = newNode;
-		ptr = NULL;
-
-		return;
+		if (strcmp(number.mode, "stack") == 0)
+		{
+			ptr = *h;
+			newNode->next = ptr;
+			newNode->prev = NULL;
+			ptr->prev = newNode;
+			*h = newNode;
+			return;
+		}
+		/* queue mode add to stack from the end */
+			(number.bottom)->next = newNode;
+			newNode->prev = number.bottom;
+			newNode->next = NULL;
+			number.bottom = newNode;
+			return;
 	}
+	number.bottom = newNode;
 	newNode->prev = NULL;
 	newNode->next = NULL;
 	*h = newNode;

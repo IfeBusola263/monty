@@ -112,6 +112,11 @@ void parser(char **lines, char **parse, stack_t **h)
 		else
 			number.liNumb++;
 
+		if (strcmp(*parse, "stack") == 0 || strcmp(*parse, "queue") == 0)
+		{
+			_mode(*parse);
+			continue;
+		}
 		if (stack_operations(parse, h, number.liNumb) != 1)
 		{
 			exit_msg(parse[0], number.liNumb);
@@ -133,12 +138,9 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 	unsigned int i, len;
 	/* array of structures; struct maps instruction to func executing it*/
 	instruction_t array[] = {
-		{"push", push}, {"pall", pall},
-		{"pint", pint}, {"pop", pop},
-		{"swap", swap}, {"add", add},
-		{"sub", sub}, {"div", divy},
-		{"mul", mul}, {"mod", mod},
-		{"pchar", pchar}, {"pstr", pstr},
+		{"push", push}, {"pall", pall}, {"pint", pint}, {"pop", pop},
+		{"swap", swap}, {"add", add}, {"sub", sub}, {"div", divy},
+		{"mul", mul}, {"mod", mod}, {"pchar", pchar}, {"pstr", pstr},
 		{"rotl", rotl}, {"rotr", rotr},
 	};
 

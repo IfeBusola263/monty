@@ -1,5 +1,5 @@
 #include "monty.h"
-mem_t number = {0, 0, NULL, NULL, NULL};
+mem_t number = {0, 0, NULL, NULL, NULL, NULL};
 /**
  * main - This the interpreter entry point
  * @ac: argument counter

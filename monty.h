@@ -45,6 +45,7 @@ typedef struct instruction_s
  * @headstack: holds address of the headstack
  * @readline: holds the address of buffer of lines
  * @liNumb: accounts for line numbers
+ * @mode: holds the mode of the addition
  *
  * Description: Global variable structure
  */
@@ -52,6 +53,7 @@ typedef struct mem_s
 {
 	int num;
 	int liNumb;
+	char *mode;
 	stack_t *bottom;
 	stack_t **headstack;
 	char **readline;
@@ -82,5 +84,6 @@ void swap(stack_t **stack, unsigned int line_number);
 void rotl(stack_t **stack, unsigned int line_number);
 void rotr(stack_t **stack, unsigned int line_number);
 void glob_free(void);
+void _mode(char *init);
 
 #endif /* MONTY_H */
