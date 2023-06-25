@@ -76,6 +76,8 @@ void rotl(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = NULL, *tail_stack = NULL, *new_stack = NULL;
 
+	(void)line_number;
+
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		glob_free();
