@@ -141,11 +141,11 @@ size_t stack_operations(char **tk_line, stack_t **head, int line_number)
 
 	if (tk_line[0] == NULL) /* handle no instruction */
 		return (1);
-	if (strcmp(tk_line[0], "stack") == 0 || strcmp(tk_line[0], "queue") == 0)
-	{
-		_mode(tk_line[0]); /* switch mode stack and queue */
-		return (1);
-	}
+	/* if (strcmp(tk_line[0], "stack") == 0 || strcmp(tk_line[0], "queue") == 0)*/
+	/* { */
+	/* 	_mode(tk_line[0]); switch mode stack and queue */
+	/*	return (1); */
+	/*} */
 	len = sizeof(array) / sizeof(array[0]);
 	for (i = 0; i < len; i++)
 	{       /* handle comment and 'nop' instruction call */
